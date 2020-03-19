@@ -1,2 +1,5 @@
 rootProject.name = 'pinguin-app'
+include 'issue-service'
+include 'user-service'
+include 'service-registry'
 
