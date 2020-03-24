@@ -2,7 +2,9 @@ package io.mjmoore.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.mjmoore.dto.StoryDto;
+import io.mjmoore.model.Issue;
 import io.mjmoore.model.Story;
+import io.mjmoore.service.IssueService;
 import io.mjmoore.service.StoryService;
 import io.mjmoore.validation.RestError;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,17 +42,23 @@ public class StoryControllerTest {
 
     private StoryDto dto;
     private Story story;
+    private Issue issue;
 
     @MockBean
     private StoryService storyService;
 
+    @MockBean
+    private IssueService issueService;
+
     @Autowired
     private MockMvc storyController;
+
 
     @BeforeEach
     public void setup() {
         dto = new StoryDto();
         story = new Story();
+        issue = new Issue();
     }
 
     @Test
@@ -171,4 +179,23 @@ public class StoryControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void assignBug() throws Exception {
+        when(issueService.assignIssue(anyLong(), anyLong()))
+                .thenReturn(issue);
+        when(storyService.getStory(anyLong()))
+                .thenReturn(story);
+
+        storyController.perform(post("/stories/100/assign/200"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void assignBugNotFound() throws Exception {
+        when(issueService.assignIssue(anyLong(), anyLong()))
+                .thenThrow(new NoSuchElementException());
+
+        storyController.perform(post("/stories/100/assign/200"))
+                .andExpect(status().isNotFound());
+    }
 }

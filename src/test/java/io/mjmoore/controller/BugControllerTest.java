@@ -3,7 +3,9 @@ package io.mjmoore.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.mjmoore.dto.BugDto;
 import io.mjmoore.model.Bug;
+import io.mjmoore.model.Issue;
 import io.mjmoore.service.BugService;
+import io.mjmoore.service.IssueService;
 import io.mjmoore.validation.EstimationValidation;
 import io.mjmoore.validation.RestError;
 import org.junit.jupiter.api.Test;
@@ -34,6 +36,7 @@ public class BugControllerTest {
 
     private final BugDto dto = new BugDto();
     private final Bug bug = new Bug();
+    private final Issue issue = new Issue();
     private final ObjectMapper mapper = new ObjectMapper();
 
     private final RestError.BadRequest badRequest
@@ -47,6 +50,9 @@ public class BugControllerTest {
 
     @MockBean
     private BugService bugService;
+
+    @MockBean
+    private IssueService issueService;
 
 
     @Test
@@ -148,4 +154,23 @@ public class BugControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    public void assignBug() throws Exception {
+        when(issueService.assignIssue(anyLong(), anyLong()))
+                .thenReturn(issue);
+        when(bugService.getBug(anyLong()))
+                .thenReturn(bug);
+
+        bugController.perform(post("/bugs/100/assign/200"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void assignBugNotFound() throws Exception {
+        when(issueService.assignIssue(anyLong(), anyLong()))
+                .thenThrow(new NoSuchElementException());
+
+        bugController.perform(post("/bugs/100/assign/200"))
+                .andExpect(status().isNotFound());
+    }
 }

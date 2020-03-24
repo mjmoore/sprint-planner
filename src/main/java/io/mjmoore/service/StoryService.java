@@ -33,6 +33,11 @@ public class StoryService {
         this.mapper.getConfiguration().setSkipNullEnabled(true);
     }
 
+
+    public Story getStory(final Long storyId) {
+        return storyRepository.findById(storyId).orElseThrow();
+    }
+
     public Story createStory(final StoryDto story) {
         final Issue issue = issueRepository.save(Issue.fromDto(story));
         return storyRepository.save(Story.fromDto(issue, story));
