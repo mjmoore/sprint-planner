@@ -1,13 +1,16 @@
-package io.mjmoore.issue.model;
+package io.mjmoore.model;
 
-import io.mjmoore.issue.dto.BugDto;
-import io.mjmoore.issue.dto.StoryDto;
+import io.mjmoore.dto.BugDto;
+import io.mjmoore.dto.StoryDto;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 @Entity
@@ -60,7 +63,9 @@ public class Issue {
     @CreatedDate
     public Date creationDate = new Date();
 
-    public Long assigneeId; //TODO
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "AssigneeId")
+    private User assignee;
 
     public Long getId() {
         return id;
@@ -68,5 +73,13 @@ public class Issue {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(final User assignee) {
+        this.assignee = assignee;
     }
 }
