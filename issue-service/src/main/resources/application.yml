@@ -1,4 +1,0 @@
-spring.jpa.properties.javax.persistence.schema-generation:
-  database.action: drop-and-create
-  drop-source: script-then-metadata
-  drop-script-source: drop-tables.sql
