@@ -1,9 +1,17 @@
 package io.mjmoore.issue.dto;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 public class StoryDto {
 
+    @NotBlank(message = "Title is mandatory.")
     private String title;
     private String description;
+
+    @Min(value = 1, message = "Minimum estimation is 1.")
+    @Max(value = 10, message = "Maximum estimation is 10.")
     private Integer estimation;
 
     public String getTitle() {

@@ -1,14 +1,13 @@
 package io.mjmoore.issue.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.mjmoore.issue.dto.StoryDto;
 import io.mjmoore.issue.model.Story;
 import io.mjmoore.issue.service.StoryService;
 import io.mjmoore.issue.validation.RestError;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,12 +33,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 public class StoryControllerTest {
 
-    private final StoryDto dto = new StoryDto();
-    private final Story story = new Story();
     private final ObjectMapper mapper = new ObjectMapper();
 
     private final RestError.BadRequest badRequest
             = new RestError.BadRequest("bad request");
+
+    private StoryDto dto;
+    private Story story;
 
     @MockBean
     private StoryService storyService;
@@ -47,16 +47,42 @@ public class StoryControllerTest {
     @Autowired
     private MockMvc storyController;
 
+    @BeforeEach
+    public void setup() {
+        dto = new StoryDto();
+        story = new Story();
+    }
+
     @Test
     public void createStory() throws Exception {
-        when(storyService.completeStory(anyLong()))
+        when(storyService.createStory(any(StoryDto.class)))
                 .thenReturn(story);
 
+        dto.setTitle("test");
         storyController.perform(
                 post("/stories/")
                         .content(mapper.writeValueAsString(dto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void createInvalidStory() throws Exception {
+        dto.setEstimation(1000);
+
+        storyController.perform(
+                post("/stories/")
+                        .content(mapper.writeValueAsString(dto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+
+        dto.setEstimation(0);
+
+        storyController.perform(
+                post("/stories/")
+                        .content(mapper.writeValueAsString(dto))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -121,33 +147,26 @@ public class StoryControllerTest {
         when(storyService.estimateStory(anyLong(), anyInt()))
                 .thenReturn(story);
 
-        storyController.perform(
-                patch("/stories/100/estimate/1")
-                        .content(mapper.writeValueAsString(dto))
-                        .contentType(MediaType.APPLICATION_JSON))
+        storyController.perform(post("/stories/100/estimate/1")
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void estimateInvalidStory() throws Exception {
-        when(storyService.updateStory(any(StoryDto.class), anyLong()))
+        when(storyService.estimateStory(anyLong(), anyInt()))
                 .thenThrow(badRequest);
 
-        storyController.perform(
-                patch("/stories/100/estimate/1")
-                        .content(mapper.writeValueAsString(dto))
-                        .contentType(MediaType.APPLICATION_JSON))
+        storyController.perform(post("/stories/100/estimate/1"))
                 .andExpect(status().isBadRequest());
     }
 
     @Test
     public void estimateNonExistentStory() throws Exception {
-        when(storyService.updateStory(any(StoryDto.class), anyLong()))
+        when(storyService.estimateStory(anyLong(), anyInt()))
                 .thenThrow(new NoSuchElementException());
 
-        storyController.perform(
-                patch("/stories/100/estimate/1")
-                        .content(mapper.writeValueAsString(dto))
+        storyController.perform(post("/stories/100/estimate/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound());
     }

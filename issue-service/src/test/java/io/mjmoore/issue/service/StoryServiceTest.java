@@ -5,6 +5,7 @@ import io.mjmoore.issue.model.Issue;
 import io.mjmoore.issue.model.Story;
 import io.mjmoore.issue.repository.IssueRepository;
 import io.mjmoore.issue.repository.StoryRepository;
+import io.mjmoore.issue.validation.EstimationValidation;
 import io.mjmoore.issue.validation.StoryStatusValidation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,15 +14,12 @@ import org.mockito.AdditionalAnswers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -39,7 +37,10 @@ public class StoryServiceTest {
     private StoryRepository storyRepository;
 
     @Mock
-    private StoryStatusValidation validator;
+    private StoryStatusValidation statusValidation;
+
+    @Mock
+    private EstimationValidation estimationValidation;
 
     @InjectMocks
     private final StoryService storyService = new StoryService();
@@ -108,4 +109,15 @@ public class StoryServiceTest {
         assertEquals(storyDto.getDescription(), updatedStory.getIssue().getDescription());
     }
 
+    @Test
+    public void estimateStory() {
+        when(storyRepository.findById(anyLong()))
+                .thenReturn(Optional.of(story));
+
+        when(storyRepository.save(any(Story.class)))
+                .then(AdditionalAnswers.returnsFirstArg());
+
+        final Story estimatedStory = storyService.estimateStory(0L, 1);
+        assertEquals(1, story.getEstimation());
+    }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.mjmoore.issue.dto.BugDto;
 import io.mjmoore.issue.model.Bug;
 import io.mjmoore.issue.service.BugService;
+import io.mjmoore.issue.validation.EstimationValidation;
 import io.mjmoore.issue.validation.RestError;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -41,6 +41,9 @@ public class BugControllerTest {
 
     @Autowired
     private MockMvc bugController;
+
+    @MockBean
+    private EstimationValidation validation;
 
     @MockBean
     private BugService bugService;

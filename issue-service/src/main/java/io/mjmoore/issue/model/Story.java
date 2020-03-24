@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import java.util.EnumSet;
 
 @Entity
@@ -29,8 +27,6 @@ public class Story {
     @JoinColumn(name = "IssueId")
     private Issue issue;
 
-    @Min(1)
-    @Max(10)
     private Integer estimation;
 
     @Enumerated(EnumType.STRING)

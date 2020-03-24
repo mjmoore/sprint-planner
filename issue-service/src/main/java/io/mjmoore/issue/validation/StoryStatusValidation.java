@@ -1,7 +1,6 @@
 package io.mjmoore.issue.validation;
 
 import io.mjmoore.issue.model.Story;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 @Component
