@@ -1,8 +1,8 @@
-package io.mjmoore.issue.controller;
+package io.mjmoore.controller;
 
-import io.mjmoore.issue.dto.StoryDto;
-import io.mjmoore.issue.model.Story;
-import io.mjmoore.issue.service.StoryService;
+import io.mjmoore.dto.StoryDto;
+import io.mjmoore.model.Story;
+import io.mjmoore.service.StoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.validation.annotation.Validated;

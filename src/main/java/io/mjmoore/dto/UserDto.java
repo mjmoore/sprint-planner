@@ -1,4 +1,4 @@
-package io.mjmoore.user.dto;
+package io.mjmoore.dto;
 
 public class UserDto {
 

@@ -1,6 +1,6 @@
-package io.mjmoore.issue.model;
+package io.mjmoore.model;
 
-import io.mjmoore.issue.dto.StoryDto;
+import io.mjmoore.dto.StoryDto;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

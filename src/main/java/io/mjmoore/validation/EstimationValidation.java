@@ -1,6 +1,6 @@
-package io.mjmoore.issue.validation;
+package io.mjmoore.validation;
 
-import io.mjmoore.issue.model.Story;
+import io.mjmoore.model.Story;
 import org.springframework.stereotype.Component;
 
 import java.util.EnumSet;

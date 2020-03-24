@@ -1,8 +1,8 @@
-package io.mjmoore.user.service;
+package io.mjmoore.service;
 
-import io.mjmoore.user.dto.UserDto;
-import io.mjmoore.user.model.User;
-import io.mjmoore.user.repository.UserRepository;
+import io.mjmoore.dto.UserDto;
+import io.mjmoore.model.User;
+import io.mjmoore.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.AdditionalAnswers;

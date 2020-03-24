@@ -1,10 +1,10 @@
-package io.mjmoore.issue.controller;
+package io.mjmoore.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.mjmoore.issue.dto.StoryDto;
-import io.mjmoore.issue.model.Story;
-import io.mjmoore.issue.service.StoryService;
-import io.mjmoore.issue.validation.RestError;
+import io.mjmoore.dto.StoryDto;
+import io.mjmoore.model.Story;
+import io.mjmoore.service.StoryService;
+import io.mjmoore.validation.RestError;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

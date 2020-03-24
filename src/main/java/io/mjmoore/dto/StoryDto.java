@@ -1,4 +1,4 @@
-package io.mjmoore.issue.dto;
+package io.mjmoore.dto;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

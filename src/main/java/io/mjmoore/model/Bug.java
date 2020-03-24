@@ -1,6 +1,6 @@
-package io.mjmoore.issue.model;
+package io.mjmoore.model;
 
-import io.mjmoore.issue.dto.BugDto;
+import io.mjmoore.dto.BugDto;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;

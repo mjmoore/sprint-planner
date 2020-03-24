@@ -1,11 +1,11 @@
-package io.mjmoore.issue.controller;
+package io.mjmoore.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.mjmoore.issue.dto.BugDto;
-import io.mjmoore.issue.model.Bug;
-import io.mjmoore.issue.service.BugService;
-import io.mjmoore.issue.validation.EstimationValidation;
-import io.mjmoore.issue.validation.RestError;
+import io.mjmoore.dto.BugDto;
+import io.mjmoore.model.Bug;
+import io.mjmoore.service.BugService;
+import io.mjmoore.validation.EstimationValidation;
+import io.mjmoore.validation.RestError;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

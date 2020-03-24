@@ -1,12 +1,12 @@
-package io.mjmoore.issue.service;
+package io.mjmoore.service;
 
-import io.mjmoore.issue.dto.StoryDto;
-import io.mjmoore.issue.model.Issue;
-import io.mjmoore.issue.model.Story;
-import io.mjmoore.issue.repository.IssueRepository;
-import io.mjmoore.issue.repository.StoryRepository;
-import io.mjmoore.issue.validation.EstimationValidation;
-import io.mjmoore.issue.validation.StoryStatusValidation;
+import io.mjmoore.dto.StoryDto;
+import io.mjmoore.model.Issue;
+import io.mjmoore.model.Story;
+import io.mjmoore.repository.IssueRepository;
+import io.mjmoore.repository.StoryRepository;
+import io.mjmoore.validation.EstimationValidation;
+import io.mjmoore.validation.StoryStatusValidation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

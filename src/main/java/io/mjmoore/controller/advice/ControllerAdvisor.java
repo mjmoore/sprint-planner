@@ -1,4 +1,4 @@
-package io.mjmoore.issue.controller.advice;
+package io.mjmoore.controller.advice;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

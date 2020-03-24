@@ -1,6 +1,6 @@
-package io.mjmoore.user.repository;
+package io.mjmoore.repository;
 
-import io.mjmoore.user.model.User;
+import io.mjmoore.model.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 

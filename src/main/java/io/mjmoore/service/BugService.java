@@ -1,12 +1,12 @@
-package io.mjmoore.issue.service;
+package io.mjmoore.service;
 
-import io.mjmoore.issue.dto.BugDto;
-import io.mjmoore.issue.model.Bug;
-import io.mjmoore.issue.model.Issue;
-import io.mjmoore.issue.repository.BugRepository;
-import io.mjmoore.issue.repository.IssueRepository;
-import io.mjmoore.issue.validation.BugStatusValidation;
-import io.mjmoore.issue.validation.RestError;
+import io.mjmoore.dto.BugDto;
+import io.mjmoore.model.Bug;
+import io.mjmoore.model.Issue;
+import io.mjmoore.repository.BugRepository;
+import io.mjmoore.repository.IssueRepository;
+import io.mjmoore.validation.BugStatusValidation;
+import io.mjmoore.validation.RestError;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +27,10 @@ public class BugService {
 
     public BugService() {
         this.mapper.getConfiguration().setSkipNullEnabled(true);
+    }
+
+    public Bug getBug(final Long bugId) {
+        return bugRepository.findById(bugId).orElseThrow();
     }
 
     public Bug createBug(final BugDto bug) {

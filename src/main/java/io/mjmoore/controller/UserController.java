@@ -1,8 +1,8 @@
-package io.mjmoore.user.controller;
+package io.mjmoore.controller;
 
-import io.mjmoore.user.dto.UserDto;
-import io.mjmoore.user.model.User;
-import io.mjmoore.user.service.UserService;
+import io.mjmoore.dto.UserDto;
+import io.mjmoore.model.User;
+import io.mjmoore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;

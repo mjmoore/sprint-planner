@@ -1,4 +1,4 @@
-package io.mjmoore.issue.validation;
+package io.mjmoore.validation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;

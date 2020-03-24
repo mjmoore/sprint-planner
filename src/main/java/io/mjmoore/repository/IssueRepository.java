@@ -1,6 +1,6 @@
-package io.mjmoore.issue.repository;
+package io.mjmoore.repository;
 
-import io.mjmoore.issue.model.Issue;
+import io.mjmoore.model.Issue;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.data.rest.webmvc.RepositoryRestController;

@@ -1,8 +1,9 @@
-package io.mjmoore.issue.controller;
+package io.mjmoore.controller;
 
-import io.mjmoore.issue.dto.BugDto;
-import io.mjmoore.issue.model.Bug;
-import io.mjmoore.issue.service.BugService;
+import io.mjmoore.dto.BugDto;
+import io.mjmoore.model.Bug;
+import io.mjmoore.service.BugService;
+import io.mjmoore.service.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @RepositoryRestController
 public class BugController {
+
+    @Autowired
+    public IssueService issueService;
 
     @Autowired
     public BugService bugService;
@@ -36,5 +40,12 @@ public class BugController {
     public @ResponseBody Bug updateBug(@RequestBody final BugDto bugDto,
                                        @PathVariable final Long bugId) {
         return bugService.updateBug(bugDto, bugId);
+    }
+
+    @PostMapping("/bugs/{bugId}/assign/{userId}")
+    public @ResponseBody Bug assignBug(@PathVariable final Long bugId,
+                                       @PathVariable final Long userId) {
+        issueService.assignIssue(bugId, userId);
+        return bugService.getBug(bugId);
     }
 }

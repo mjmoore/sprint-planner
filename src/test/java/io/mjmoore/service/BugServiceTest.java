@@ -1,11 +1,11 @@
-package io.mjmoore.issue.service;
+package io.mjmoore.service;
 
-import io.mjmoore.issue.dto.BugDto;
-import io.mjmoore.issue.model.Bug;
-import io.mjmoore.issue.model.Issue;
-import io.mjmoore.issue.repository.BugRepository;
-import io.mjmoore.issue.repository.IssueRepository;
-import io.mjmoore.issue.validation.BugStatusValidation;
+import io.mjmoore.dto.BugDto;
+import io.mjmoore.model.Bug;
+import io.mjmoore.model.Issue;
+import io.mjmoore.repository.BugRepository;
+import io.mjmoore.repository.IssueRepository;
+import io.mjmoore.validation.BugStatusValidation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

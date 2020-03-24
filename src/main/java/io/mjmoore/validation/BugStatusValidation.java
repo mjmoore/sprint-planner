@@ -1,6 +1,6 @@
-package io.mjmoore.issue.validation;
+package io.mjmoore.validation;
 
-import io.mjmoore.issue.model.Bug;
+import io.mjmoore.model.Bug;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 

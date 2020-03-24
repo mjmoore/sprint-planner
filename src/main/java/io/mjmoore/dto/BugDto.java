@@ -1,6 +1,6 @@
-package io.mjmoore.issue.dto;
+package io.mjmoore.dto;
 
-import io.mjmoore.issue.model.Bug;
+import io.mjmoore.model.Bug;
 
 public class BugDto {
     private String title;

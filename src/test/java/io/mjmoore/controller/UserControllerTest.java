@@ -1,9 +1,9 @@
-package io.mjmoore.user.controller;
+package io.mjmoore.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.mjmoore.user.dto.UserDto;
-import io.mjmoore.user.model.User;
-import io.mjmoore.user.service.UserService;
+import io.mjmoore.dto.UserDto;
+import io.mjmoore.model.User;
+import io.mjmoore.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

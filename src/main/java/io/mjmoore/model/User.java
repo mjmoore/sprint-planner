@@ -1,4 +1,4 @@
-package io.mjmoore.user.model;
+package io.mjmoore.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
