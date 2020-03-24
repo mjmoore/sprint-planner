@@ -1,0 +1,2 @@
+spring.datasource:
+  continue-on-error: true # Dirty hack to ignore `table exists` errors in tests
