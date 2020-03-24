@@ -51,7 +51,7 @@ public class StoryService {
     public Story estimateStory(final Long storyId, final Integer estimation) {
         final Story story = storyRepository.findById(storyId).orElseThrow();
 
-        estimationValidation.validateEstimation(story, estimation);
+        estimationValidation.validateStatus(story);
         story.setEstimation(estimation);
         return storyRepository.save(story);
     }
