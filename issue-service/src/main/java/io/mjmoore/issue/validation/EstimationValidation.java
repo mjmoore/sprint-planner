@@ -1,9 +1,11 @@
 package io.mjmoore.issue.validation;
 
 import io.mjmoore.issue.model.Story;
+import org.springframework.stereotype.Component;
 
 import java.util.EnumSet;
 
+@Component
 public class EstimationValidation {
 
     // Do not allow estimation of completed stories
