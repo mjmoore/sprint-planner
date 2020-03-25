@@ -17,7 +17,7 @@ create table Story (
     Id bigint identity primary key,
     IssueId bigint not null,
     Status varchar not null,
-    Priority varchar not null,
+    Estimate int,
     foreign key (IssueId) references Issue(Id)
 );
 
