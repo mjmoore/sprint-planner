@@ -69,8 +69,4 @@ public class StoryService {
         mapper.map(storyDto, story.getIssue());
         return storyRepository.save(story);
     }
-
-    public List<Story> getEstimatedStories() {
-        return storyRepository.getEstimatedStories();
-    }
 }

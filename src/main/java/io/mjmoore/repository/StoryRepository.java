@@ -12,6 +12,7 @@ import java.util.List;
 public interface StoryRepository extends PagingAndSortingRepository<Story, Long> {
 
     @Query(value = "Select * From Story s Left Join Issue i on s.Issue_Id = i.id Where s.Status = 'Estimated'", nativeQuery = true)
+    @RestResource(exported = false)
     List<Story> getEstimatedStories();
 
     @RestResource(exported = false)

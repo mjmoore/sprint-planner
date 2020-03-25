@@ -35,6 +35,10 @@ public class Story {
 
     public Story() {}
 
+    public Story(final int estimate) {
+        this.estimate = estimate;
+    }
+
     public Story(final Long id, final Issue issue){
         this.id = id;
         this.setIssue(issue);

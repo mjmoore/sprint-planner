@@ -1,4 +1,4 @@
-Insert into PinguinUser (Name) Values
+Insert into Pinguin_User (Name) Values
     ('Cyndy Beaudette'),
     ('Francene Murchison'),
     ('Nicolas Mignone'),

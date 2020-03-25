@@ -1,4 +1,4 @@
-create table PinguinUser (
+create table Pinguin_User (
     Id bigint identity primary key,
     Name varchar not null,
     unique(Id)
@@ -10,7 +10,7 @@ create table Issue  (
     Description varchar,
     Creation_Date date default Current_Date() not null,
     Assignee_Id bigint,
-    foreign key (Assignee_Id) references PinguinUser(Id)
+    foreign key (Assignee_Id) references Pinguin_User(Id)
 );
 
 create table Story (
