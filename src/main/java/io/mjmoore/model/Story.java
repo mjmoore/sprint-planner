@@ -2,6 +2,7 @@ package io.mjmoore.model;
 
 import io.mjmoore.dto.StoryDto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -24,10 +25,10 @@ public class Story {
     public Long id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IssueId")
+    @JoinColumn//(name = "IssueId")
     private Issue issue;
 
-    private Integer estimation;
+    private Integer estimate;
 
     @Enumerated(EnumType.STRING)
     private Status status = Status.New;
@@ -39,28 +40,28 @@ public class Story {
         this.setIssue(issue);
     }
 
-    private Story(final Issue issue, final Integer estimation) {
+    private Story(final Issue issue, final Integer estimate) {
         this.setIssue(issue);
-        setEstimation(estimation);
+        setEstimate(estimate);
     }
 
     public static Story fromDto(final Issue issue, final StoryDto storyDto) {
-        return new Story(issue, storyDto.getEstimation());
+        return new Story(issue, storyDto.getEstimate());
     }
 
-    public Integer getEstimation() {
-        return estimation;
+    public Integer getEstimate() {
+        return estimate;
     }
 
-    public void setEstimation(final Integer estimation) {
+    public void setEstimate(final Integer estimate) {
 
         // Should only estimate new tickets, or change existing ones
         if(!EnumSet.of(Status.New, Status.Estimated).contains(getStatus())) {
             return;
         }
 
-        this.estimation = estimation;
-        if(estimation != null) {
+        this.estimate = estimate;
+        if(estimate != null) {
             this.setStatus(Status.Estimated);
         }
     }

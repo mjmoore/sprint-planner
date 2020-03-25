@@ -63,8 +63,8 @@ public class Issue {
     @CreatedDate
     public Date creationDate = new Date();
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "AssigneeId")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Assignee_Id")
     private User assignee;
 
     public Long getId() {

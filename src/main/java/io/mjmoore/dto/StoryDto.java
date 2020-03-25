@@ -12,7 +12,7 @@ public class StoryDto {
 
     @Min(value = 1, message = "Minimum estimation is 1.")
     @Max(value = 10, message = "Maximum estimation is 10.")
-    private Integer estimation;
+    private Integer estimate;
 
     public String getTitle() {
         return title;
@@ -30,11 +30,11 @@ public class StoryDto {
         this.description = description;
     }
 
-    public Integer getEstimation() {
-        return estimation;
+    public Integer getEstimate() {
+        return estimate;
     }
 
-    public void setEstimation(Integer estimation) {
-        this.estimation = estimation;
+    public void setEstimate(Integer estimate) {
+        this.estimate = estimate;
     }
 }

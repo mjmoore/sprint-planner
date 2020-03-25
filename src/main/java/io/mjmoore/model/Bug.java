@@ -41,7 +41,7 @@ public class Bug {
     private Long id;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IssueId")
+    @JoinColumn(name = "Issue_Id")
     private Issue issue;
 
     @Enumerated(EnumType.STRING)

@@ -76,7 +76,7 @@ public class StoryControllerTest {
 
     @Test
     public void createInvalidStory() throws Exception {
-        dto.setEstimation(1000);
+        dto.setEstimate(1000);
 
         storyController.perform(
                 post("/stories/")
@@ -84,7 +84,7 @@ public class StoryControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
 
-        dto.setEstimation(0);
+        dto.setEstimate(0);
 
         storyController.perform(
                 post("/stories/")

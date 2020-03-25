@@ -101,10 +101,10 @@ public class StoryServiceTest {
         final StoryDto storyDto = new StoryDto();
         storyDto.setDescription("updated-description");
         storyDto.setTitle("updated-title");
-        storyDto.setEstimation(1000);
+        storyDto.setEstimate(1000);
 
         final Story updatedStory = storyService.updateStory(storyDto, 0L);
-        assertEquals(1000, updatedStory.getEstimation());
+        assertEquals(1000, updatedStory.getEstimate());
         assertEquals(storyDto.getTitle(), updatedStory.getIssue().getTitle());
         assertEquals(storyDto.getDescription(), updatedStory.getIssue().getDescription());
     }
@@ -118,6 +118,6 @@ public class StoryServiceTest {
                 .then(AdditionalAnswers.returnsFirstArg());
 
         final Story estimatedStory = storyService.estimateStory(0L, 1);
-        assertEquals(1, story.getEstimation());
+        assertEquals(1, story.getEstimate());
     }
 }

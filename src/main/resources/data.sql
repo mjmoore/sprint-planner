@@ -37,14 +37,14 @@ Insert into Issue (Id, Title, Description) values
     (29, 'Issue 29', 'Description of issue 29'),
     (30, 'Issue 30', 'Description of issue 30');
 
-Insert into Story (IssueId, Status) values
+Insert into Story (Issue_Id, Status) values
     (1, 'New'),
     (2, 'New'),
     (3, 'New'),
     (4, 'Completed'),
     (5, 'Completed');
 
-Insert into Bug (IssueId, Status, Priority) values
+Insert into Bug (Issue_Id, Status, Priority) values
     (6, 'New', 'Minor'),
     (7, 'New', 'Major'),
     (8, 'Verified', 'Major'),
@@ -52,7 +52,7 @@ Insert into Bug (IssueId, Status, Priority) values
     (10, 'Resolved', 'Critical');
 
 
-Insert into Story (IssueId, Status, Estimate) values
+Insert into Story (Issue_Id, Status, Estimate) values
     (11, 'Estimated', 2),
     (12, 'Estimated', 2),
     (13, 'Estimated', 4),
@@ -61,15 +61,15 @@ Insert into Story (IssueId, Status, Estimate) values
     (16, 'Estimated', 6),
     (17, 'Estimated', 6),
     (18, 'Estimated', 6),
-    (19, 'Estimated', 10),
-    (20, 'Estimated', 10),
-    (21, 'Estimated', 10),
+    (19, 'Estimated', 8),
+    (20, 'Estimated', 8),
+    (21, 'Estimated', 8),
     (22, 'Estimated', 10),
     (23, 'Estimated', 10),
     (24, 'Estimated', 10),
     (25, 'Estimated', 10),
     (26, 'Estimated', 10),
     (27, 'Estimated', 10),
-    (28, 'Estimated', 8),
-    (29, 'Estimated', 8),
-    (30, 'Estimated', 8);
+    (28, 'Estimated', 10),
+    (29, 'Estimated', 10),
+    (30, 'Estimated', 10);
