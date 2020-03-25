@@ -1,7 +1,6 @@
 package io.mjmoore.controller;
 
 import io.mjmoore.dto.StoryDto;
-import io.mjmoore.model.Bug;
 import io.mjmoore.model.Story;
 import io.mjmoore.service.IssueService;
 import io.mjmoore.service.StoryService;

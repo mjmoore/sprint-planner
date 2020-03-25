@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 public class StoryService {
 
@@ -57,7 +59,7 @@ public class StoryService {
         final Story story = storyRepository.findById(storyId).orElseThrow();
 
         estimationValidation.validateStatus(story);
-        story.setEstimation(estimation);
+        story.setEstimate(estimation);
         return storyRepository.save(story);
     }
 
@@ -66,5 +68,9 @@ public class StoryService {
         mapper.map(storyDto, story);
         mapper.map(storyDto, story.getIssue());
         return storyRepository.save(story);
+    }
+
+    public List<Story> getEstimatedStories() {
+        return storyRepository.getEstimatedStories();
     }
 }
