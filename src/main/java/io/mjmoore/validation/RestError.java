@@ -10,11 +10,4 @@ public class RestError {
             super(HttpStatus.BAD_REQUEST, message);
         }
     }
-
-    public static class NotFound extends ResponseStatusException {
-        public NotFound(final String message) {
-            super(HttpStatus.NOT_FOUND, message);
-        }
-    }
-
 }
