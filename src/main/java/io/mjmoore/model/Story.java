@@ -35,6 +35,13 @@ public class Story {
 
     public Story() {}
 
+    public Story(final Story s) {
+        this.id = s.id;
+        this.issue = s.getIssue();
+        this.estimate = s.getEstimate();
+        this.status = s.getStatus();
+    }
+
     public Story(final int estimate) {
         this.estimate = estimate;
     }
