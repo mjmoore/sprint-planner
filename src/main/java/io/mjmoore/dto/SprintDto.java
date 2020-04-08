@@ -1,25 +1,27 @@
 package io.mjmoore.dto;
 
+import io.mjmoore.model.Story;
+
 import java.util.List;
 
 public class SprintDto {
 
-    private String isoDate;
-    private List<StoryDto> stories;
+    private int sprintNumber;
+    private List<Story> stories;
 
-    public String getIsoDate() {
-        return isoDate;
+    public int getSprintNumber() {
+        return sprintNumber;
     }
 
-    public void setIsoDate(final String isoDate) {
-        this.isoDate = isoDate;
+    public void setSprintNumber(final int sprintNumber) {
+        this.sprintNumber = sprintNumber;
     }
 
-    public List<StoryDto> getStories() {
+    public List<Story> getStories() {
         return stories;
     }
 
-    public void setStories(final List<StoryDto> stories) {
+    public void setStories(final List<Story> stories) {
         this.stories = stories;
     }
 }
