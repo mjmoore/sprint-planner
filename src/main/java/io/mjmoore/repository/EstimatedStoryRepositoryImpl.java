@@ -4,9 +4,12 @@ import io.mjmoore.model.Story;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
-import java.util.Collections;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EstimatedStoryRepositoryImpl implements EstimatedStoryRepository {
 
@@ -16,6 +19,14 @@ public class EstimatedStoryRepositoryImpl implements EstimatedStoryRepository {
     @Override
     public Map<Integer, List<Story>> getStoriesByEstimate() {
 
-        return Collections.emptyMap();
+        final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        final CriteriaQuery<Story> query = criteriaBuilder.createQuery(Story.class);
+
+        final Root<Story> story = query.from(Story.class);
+        query.multiselect(story)
+                .where(criteriaBuilder.equal(story.get("status"), Story.Status.Estimated));
+
+        return entityManager.createQuery(query).getResultStream()
+                .collect(Collectors.groupingBy(Story::getEstimate));
     }
 }
