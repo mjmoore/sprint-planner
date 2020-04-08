@@ -29,7 +29,7 @@ public class SprintAccumulator {
             return;
         }
 
-        // Find the first sprint which can can accept the story
+        // Find the first sprint which can can accept the story, or create a new sprint
         sprintsWithCapacity.stream()
                 .filter(sprint -> sprint.test(story)).findFirst()
                 .ifPresentOrElse(
