@@ -9,7 +9,7 @@ import org.springframework.data.rest.core.annotation.RestResource;
 import java.util.List;
 
 @RepositoryRestResource
-public interface StoryRepository extends PagingAndSortingRepository<Story, Long> {
+public interface StoryRepository extends PagingAndSortingRepository<Story, Long>, EstimatedStoryRepository {
 
     @Query(value = "Select * From Story s Left Join Issue i on s.Issue_Id = i.id Where s.Status = 'Estimated'", nativeQuery = true)
     @RestResource(exported = false)
