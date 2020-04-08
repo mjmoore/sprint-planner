@@ -4,13 +4,13 @@ import io.mjmoore.dto.SprintDto;
 import io.mjmoore.model.Story;
 import io.mjmoore.repository.StoryRepository;
 import io.mjmoore.repository.UserRepository;
+import io.mjmoore.service.sprint.EstimationLimit;
+import io.mjmoore.service.sprint.SprintCollector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,37 +40,8 @@ public class SprintService {
     }
 
     public List<SprintDto> getSprints() {
-        return Collections.emptyList();
+        final long sprintCapacity = userRepository.count() * devCapacity;
+
+        return storyRepository.getEstimatedStories().stream().collect(new SprintCollector(sprintCapacity));
     }
-
-    /**
-     * Stateful filter for calculating capacity
-     */
-    public static class EstimationLimit implements Predicate<Story> {
-
-        private final int devCapacity;
-        private long capacityLimit;
-        private long capacity = 0;
-
-        public EstimationLimit(final long devs, final int devCapacity) {
-            this.devCapacity = devCapacity;
-            this.capacityLimit = devs * devCapacity;
-        }
-
-        @Override
-        public boolean test(final Story story) {
-
-            final boolean capacityAvailable = capacity + story.getEstimate() <= capacityLimit;
-            final boolean devCapable = devCapacity >= story.getEstimate();
-
-            final boolean completable = capacityAvailable && devCapable;
-
-            if(completable) {
-                capacity += story.getEstimate();
-            }
-
-            return completable;
-        }
-    }
-
 }
