@@ -1,6 +1,7 @@
 package io.mjmoore.repository;
 
 import io.mjmoore.model.Story;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
@@ -24,7 +25,8 @@ public class EstimatedStoryRepositoryImpl implements EstimatedStoryRepository {
 
         final Root<Story> story = query.from(Story.class);
         query.multiselect(story)
-                .where(criteriaBuilder.equal(story.get("status"), Story.Status.Estimated));
+                .where(criteriaBuilder.equal(story.get("status"), Story.Status.Estimated))
+                .orderBy(criteriaBuilder.asc(story.get("id")));
 
         return entityManager.createQuery(query).getResultStream()
                 .collect(Collectors.groupingBy(Story::getEstimate));
