@@ -9,6 +9,8 @@ public class SprintDto {
 
     private final List<Story> stories = new ArrayList<>();
 
+    public SprintDto() {}
+
     public SprintDto(final List<Story> stories) {
         this.stories.addAll(stories);
     }
