@@ -151,6 +151,40 @@ public class SprintServiceTest {
         assertEquals(smallStoriesAmount + 1, sprintService.getSprint().size());
     }
 
+    @Test
+    public void noStorySprints() {
+        when(userRepository.count()).thenReturn(2L);
+
+        when(storyRepository.getEstimatedStories()).thenReturn(Collections.emptyList());
+
+        // Expect all small stories (2 * 4 = 8) and one big story (1 * 10 = 10) to fit capacity
+        assertTrue(sprintService.getSprints().isEmpty());
+    }
+
+    @Test
+    public void testSingleSprints() {
+        when(userRepository.count()).thenReturn(2L);
+
+        final int bigStoriesAmount = 2;
+        final List<Story> stories = createPopulatedList(bigStory, bigStoriesAmount);
+
+        when(storyRepository.getEstimatedStories()).thenReturn(stories);
+
+        assertEquals(1, sprintService.getSprints().size());
+    }
+
+    @Test
+    public void testMultipleSprints() {
+        when(userRepository.count()).thenReturn(2L);
+
+        final int bigStoriesAmount = 3;
+        final List<Story> stories = createPopulatedList(bigStory, bigStoriesAmount);
+
+        when(storyRepository.getEstimatedStories()).thenReturn(stories);
+
+        assertEquals(2, sprintService.getSprints().size());
+    }
+
     private <T> List<T> createPopulatedList(final T t, final int amount) {
         return IntStream.range(0, amount).mapToObj(i -> t).collect(Collectors.toList());
     }
