@@ -76,11 +76,20 @@ There are a few resources exposed via REST:
  * `POST`: `/users`, see [UserDto](src/main/java/io/mjmoore/dto/UserDto.java)
  * `PATCH`: `/users/{bugId}`, see [UserDto](src/main/java/io/mjmoore/dto/UserDto.java)
  
-#### [/sprint](http://localhost:8080/sprint)
+#### [~~/sprint~~](http://localhost:8080/sprint)
 
  * `GET`: `/sprint`
    
-   This resource will naïvely return a list of stories which 
+   ~~This resource will naïvely return a list of stories which 
+   can be assigned to existing users in the system.~~
+   
+   Deprecated, check the `/sprints` resource.
+
+#### [/sprints](http://localhost:8080/sprints)
+
+ * `GET`: `/sprint`
+   
+   This resource will naïvely return a list of [SprintDto](src/main/java/io/mjmoore/dto/SprintDto.java)s which 
    can be assigned to existing users in the system.
    
 ### Application design
