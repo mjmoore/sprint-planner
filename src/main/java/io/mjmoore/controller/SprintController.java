@@ -1,5 +1,6 @@
 package io.mjmoore.controller;
 
+import io.mjmoore.dto.SprintDto;
 import io.mjmoore.model.Story;
 import io.mjmoore.service.SprintService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,10 @@ public class SprintController {
     @GetMapping("/sprint")
     public @ResponseBody List<Story> getSprint() {
         return sprintService.getSprint();
+    }
+
+    @GetMapping("/sprints")
+    public @ResponseBody List<SprintDto> getSprints() {
+        return sprintService.getSprints();
     }
 }

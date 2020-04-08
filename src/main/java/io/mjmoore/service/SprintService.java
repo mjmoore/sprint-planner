@@ -1,5 +1,6 @@
 package io.mjmoore.service;
 
+import io.mjmoore.dto.SprintDto;
 import io.mjmoore.model.Story;
 import io.mjmoore.repository.StoryRepository;
 import io.mjmoore.repository.UserRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -35,6 +37,10 @@ public class SprintService {
         final EstimationLimit limit = new EstimationLimit(devs, devCapacity);
 
         return stories.stream().filter(limit).collect(Collectors.toList());
+    }
+
+    public List<SprintDto> getSprints() {
+        return Collections.emptyList();
     }
 
     /**
